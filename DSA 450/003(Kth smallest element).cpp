@@ -5,35 +5,41 @@ int findMin(int [], int,int k);
 
 int main()
 {
-    int size = 0;
+    int size = 0, k;
     cout << "Enter the size of array = ";
     cin >> size;
+
     int *array = new int[size];
     for(int i = 0; i < size; i++)
     {
         cin >> array[i];
     }
-
-    cout << "Minimum = " <<findMin(array, size,3);
+    cout << "Enter the kth = ";
+    cin >> k;
+    cout << "Minimum = " <<findMin(array, size,k);
 }
 
-int findMin(int array[], int size, int k)
+int findMin(int originalArray[], int size, int k)
 {
-    int *min = new int[k];
-    min[0] = array[0];
-    int kth = 0;
-    for(int i = 1; i < size; i++)
+    int temp;
+    int *array = new int[size];
+    for(int i = 0; i < size; i++)
     {
-        if(min[kth] > array[i])
+        array[i] = originalArray[i];
+    }
+    for(int i = 0; i < size-1; i++)
+    {
+        temp = array[i];
+        for(int j = i+1; j < size; j++)
         {
-            min[kth] = array[i];
-            kth++;
+            if(temp > array[j])
+            {
+                array[i] = array[j];
+                array[j] = temp;
+                temp = array[i];
+            }
         }
     }
-
-    for(int i = 0; i < kth; i++)
-    {
-        cout << min[i]<<" ";
-    }
-    return min[kth-1];
+    return array[k-1];
 }
+
