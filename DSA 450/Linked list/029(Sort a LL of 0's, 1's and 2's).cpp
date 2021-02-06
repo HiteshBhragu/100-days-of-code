@@ -86,6 +86,7 @@ Node* segregate(Node *head) {
 
     // Add code here
     int zero = 0, first = 0, second = 0;
+    Node *result = head;
     while(head != NULL)
     {
         if(head->data == 0)
@@ -100,42 +101,26 @@ Node* segregate(Node *head) {
         }
         head = head->next;
     }
-    Node *tail = NULL, *result = NULL;
-    int i;
-    for(i = 0; i < zero; i++)
+    head = result;
+    while(result != NULL)
     {
-        if(result == NULL)
+        if(zero != 0)
         {
-            result = tail = new Node(0);
-        }else
-        {
-            tail->next = new Node(0);
-            tail = tail->next;
+            result->data = 0;
+            zero--;
         }
-    }
-    for(i = 0; i < first; i++)
-    {
-        if(result == NULL)
+        else if(first != 0)
         {
-            result = tail = new Node(1);
-        }else
-        {
-            tail->next = new Node(1);
-            tail = tail->next;
+            result->data = 1;
+            first--;
         }
-    }
+        else if(second != 0)
+        {
+            result->data = 2;
+            second--;
+        }
 
-    for(i = 0; i < second; i++)
-    {
-        if(result == NULL)
-        {
-            result = tail = new Node(2);
-        }else
-        {
-            tail->next = new Node(2);
-            tail = tail->next;
-        }
+        result = result->next;
     }
-    return result;
+    return head;
 }
-
