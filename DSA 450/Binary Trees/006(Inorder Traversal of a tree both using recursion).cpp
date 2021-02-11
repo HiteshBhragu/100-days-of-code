@@ -41,10 +41,18 @@ int main()
 	root->left->left	 = new Node(4);
 	root->left->right = new Node(5);
 
+<<<<<<< HEAD
 
 	cout << "\nInorder traversal of binary tree is \n";
 	printInorder(root);
 
 
+=======
+	
+	cout << "\nInorder traversal of binary tree is \n";
+	printInorder(root);
+
+	
+>>>>>>> 340b981ae3841b10811fd569d34be02b68620b4e
 	return 0;
 }
