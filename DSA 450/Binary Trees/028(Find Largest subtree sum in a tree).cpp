@@ -19,12 +19,15 @@ Node* newNode(int key)
 }
 
 // Function to find largest subtree sum.
-void findLargestSubtreeSum(Node* node, int &ans)
+int findLargestSubtreeSum(Node* node, int &ans)
 {
-	if(!node) return;
-	findLargestSubtreeSum(node->left, ans);
-	findLargestSubtreeSum(node->right, ans);
-	ans += node->key;
+	if(!node) return 0;
+	int l = findLargestSubtreeSum(node->left, ans);
+	int r = findLargestSubtreeSum(node->right, ans);
+
+	if(ans == 0 || ans < l+r+node->key)
+        ans  = l+r+node->key;
+	return l+r+node->key;
 }
 
 // Driver function
@@ -43,7 +46,7 @@ int main()
 	Node* root = newNode(1);
 	root->left = newNode(-2);
 	root->right = newNode(3);
-	root->left->left = newNode(4);
+	root->left->left = newNode(5);
 	root->left->right = newNode(5);
 	root->right->left = newNode(-6);
 	root->right->right = newNode(2);
